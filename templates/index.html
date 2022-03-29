@@ -34,6 +34,10 @@
 	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
 
 	{% endif %}
+	
+	{% for your_list_element in your_dict %}
+        <p>{{ your_list_element }} </p>
+        {% endfor %}
 
 </div>
 

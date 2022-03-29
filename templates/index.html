@@ -32,8 +32,14 @@
 	{% if prediction %}
   <img src="{{img_path}}" height="400px" width="400px">
 	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
+      <h2>Recommended Songs</h2>
+    <br>
+  {% for key, value in final_dict.items() %}
+  <p>{{ key }} by {{ value }}</p>
+   {% endfor %}
+   {% endif %}
 
-	{% endif %}
+
 
 </div>
 

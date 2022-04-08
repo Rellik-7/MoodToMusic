@@ -32,11 +32,13 @@
 	{% if prediction %}
   <img src="{{img_path}}" height="400px" width="400px">
 	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
-      <h2>Recommended Songs</h2>
+      <h2>Recommended Songs: (CLick to open in spotify)</h2>
     <br>
-  {% for key, value in final_dict.items() %}
-  <p>{{ key }} by {{ value }}</p>
+  <ul class="list-group">
+  {% for song,artist,id in final_dict %}
+  <a href = "http://open.spotify.com/track/{{id}}" class="list-group-item list-group-item-action" target="_blank">{{ song }} by {{ artist }}</a>
    {% endfor %}
+    </ul>
    {% endif %}
 
 

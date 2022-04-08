@@ -78,7 +78,8 @@ def predict_label(img_path):
     df = df.sample(n=10)
     name_list = df["name"].tolist()
     artist_list = df["artist"].tolist()
-    final_dict = dict(zip(name_list, artist_list))
+    id_list = df["id"].tolist()
+    final_dict = zip(name_list,artist_list,id_list)
     return results[0], final_dict
 
 

@@ -4,52 +4,398 @@
   <title>Image Classification</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+  crossorigin="anonymous"></script>
 </head>
+
+<style>
+  body{
+    background-image: linear-gradient(to right, #FBDA61 0%, #FF5ACD 100%);
+    background-size: cover; 
+    position: relative;
+    
+  }
+  
+  *{
+    margin: 0 ;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  footer{
+    background: #111;
+    height: auto;
+    font-family: "Open Sans";
+    padding-top: 40px;
+    color: #fff;
+
+  }
+  .footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-content h3{
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3rem ;
+  }
+  .footer-content p{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height:28px;
+    font-size:14px;
+  }
+  .footer-bottom{
+    background-color:#000;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+  }
+  .footer-bottom span{
+    text-transform: capitalize;
+    opacity: .4;
+    font-weight: 200;
+  }
+  .heading{
+    background-color: #f3ec78;
+    background-image: linear-gradient(30deg, #f3ec78, #af4261);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    font-size: 28px;
+  }
+  .heading1{
+    font-size: 22px;
+  }
+  .img{
+    height: 400px;
+    width: 100%;
+  }
+
+  .cunt {
+    width: 100%;
+
+  }
+  @media screen and (min-width: 768px) {
+    .cunt{
+        width: 40%;
+    }
+  }
+
+  .bg h1{
+    color: 	#A52A2A; 
+    font-size: 48px; 
+    font-family: 'Signika', sans-serif;
+  }
+
+  .bg h5{
+    font-family: 'Inder', sans-serif; 
+    color: #666
+  }
+
+  .login-box {
+    max-width: 500px;
+    padding: 40px;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .login-box .user-box {
+    position: relative;
+  }
+  
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+  
+  .login-box form button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: brown;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    background-color: #D0DCA8 ;
+  }
+  
+  .login-box button:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+  
+  .login-box button span {
+    position: absolute;
+    display: block;
+  }
+  
+  .login-box button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .login-box button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .login-box button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .login-box button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+
+  .listed{
+    background-image: linear-gradient(-30deg, #FBDA61 0%, #FF5ACD 100%);
+    background-size: cover; 
+    position: relative;
+  }
+  .bg1{
+    margin-top: 100px;
+  }
+  
+</style>
+
 <body>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand ml-5 heading" href="#home">Mood To Music</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link mr-1 heading1" id="nav1" href="#home">Home <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-link mr-1 heading1" id="nav2" href="#upload">Upload File</a>
+            <a class="nav-link mr-1 heading1" id="nav3" href="#songs">Songs</a>
+            <a class="nav-link mr-3 heading1" id="nav4" href="#footer">Footer</a>
+        </div>
+    </div>
+  </nav>
+  
+  <a name="home"></a>
+  <div id="nav1">
+    <div class="container bg bg1">
+      <h1>Emotion Classfier</h1>
+      <h5>Happy, upbeat music causes our brains to produce chemicals like dopamine and serotonin, which evokes feelings of joy, and calming music relaxes the mind and the body. </h5>
+      <h5>Can't control your anger? Feeling disgusted? Sad cause your gf left you? No worries. Tune in to Mood To Music and improve your mood.  </h5>
+    </div>
+  </div>
 
-<div class="container">
-  <h1 class="jumbotron bg-primary">Emotion Classfier</h1>
-  <br><br>
-  <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Upload Your Image :</label>
-      <div class="col-sm-10">
-        <input type="file" class="form-control" placeholder="Hours Studied"  name="my_image" id="pwd">
+  <div id="carouselExampleCaptions" class="carousel slide container mt-5 cunt" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active data-interval='1000'">
+        <img src="{{url_for('static', filename="angry.jpg")}}" class="d-block img" alt="...">
+      </div>
+      <div class="carousel-item data-interval='1000'">
+        <img src="{{url_for('static', filename="disgust.jpg")}}" class="d-block img" alt="...">
+      </div>
+      <div class="carousel-item data-interval='1000'">
+        <img src="{{url_for('static', filename="fear.jpg")}}" class="d-block img" alt="...">
+      </div>
+      <div class="carousel-item data-interval='1000'">
+        <img src="{{url_for('static', filename="happy.jpg")}}" class="d-block img" alt="...">
+      </div>
+      <div class="carousel-item data-interval='1000'">
+        <img src="{{url_for('static', filename="sad.jpg")}}" class="d-block img" alt="...">
+      </div>
+      <div class="carousel-item data-interval='1000'">
+        <img src="{{url_for('static', filename="surprise.jpg")}}" class="d-block img" alt="...">
       </div>
     </div>
-
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Submit</button>
-      </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  
+  <a name="upload"></a>
+  <div id="nav2">
+    <div class="container bg mt-5">
+      <h5>The one-stop solution to improve your mood is here! Upload your image below and let our algorithm detect your mood and choose songs that suit your mood the most. </h5>
     </div>
-  </form>
+  </div>
+
+  <div class="login-box container mt-5 mb-5">
+    <h2 >Upload your image here!</h2>
+    <form action="/submit" method="post" enctype="multipart/form-data">
+      <div class="user-box">
+        <input type="file" name="my_image" id="pwd" >
+      </div>
+      <button type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </button>
+    </form>
+  </div>
+
+  
 
 	{% if prediction %}
-  <img src="{{img_path}}" height="400px" width="400px">
-	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
-      <h2>Recommended Songs: (CLick to open in spotify)</h2>
-    <br>
-  <ul class="list-group">
+  <a name="songs"></a>
+  <div class="container mt-3 mb-5" id="nav3">
+      <div class="text-center">
+        <img src="{{img_path}}" height="400px" width="400px">
+        <div class="bg">
+	          <h1 class="mt-2"> Our Prediction   : <i> {{prediction}} </i></h1>
+            <h5 class="my-3"> Songs For You : (Click to open in spotify)</h5>
+        </div>
+      </div>
+  <br>
+  
   {% for song,artist,id in final_dict %}
-  <a href = "http://open.spotify.com/track/{{id}}" class="list-group-item list-group-item-action" target="_blank">{{ song }} by {{ artist }}</a>
+  <a href = "http://open.spotify.com/track/{{id}}" class="list-group-item list-group-item-action mt-3 listed text-center" target="_blank"><h3>{{ song }}</h3> <div>BY {{ artist }}</div> </a>
    {% endfor %}
-    </ul>
+
    {% endif %}
 
+  </div>
+  
 
-
+  <a name="footer"></a>
+   <footer id="nav4">
+    <div class="footer-content">
+      <h3>Mood to Music </h3>
+      <p>Project by Suvayan Nath, Arka Datta, Sanjay Chhaba & Nayanika Ghosh.</p>
+    </div>
+    <div class="footer-bottom">
+      <p>copyright &copy;2022. Project from <span>Consulting & Analysis Club, IIT Guwahati</span></p>
+    </div>
+  </footer>
 </div>
 
-
-
-
-
-
-
 </body>
+
 </html>
